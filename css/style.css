@@ -3,7 +3,7 @@ body {
 }
 /* header area style  */
 header {
-  margin: 0vh 0;
+  margin: 5vh 0;
 }
 header h1 {
   font-size: 80px;
@@ -41,6 +41,7 @@ input:focus{
   font-size: 25px;
 }
 /* search area style ended */
+
 /* flip card design start from here  */
 .card-container {
   width: 100%;
@@ -63,7 +64,7 @@ input:focus{
   transform-style: preserve-3d;
   /* perspective: 3000px; */
 }
-.card h1 {
+.card .row {
   transform: translateZ(100px);
   text-shadow: crimson;
   /* background-color: aqua; */
@@ -73,9 +74,11 @@ input:focus{
 }
 .front {
   background-color: #ecf0f3;
+  box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
 }
 .back {
-  background-color: greenyellow;
+  background-color: rgba(220, 20, 60, 0.925);
+  box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
   transform: rotateY(180deg);
 }
 .card-container:hover .front {
