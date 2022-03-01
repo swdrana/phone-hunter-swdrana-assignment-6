@@ -1,0 +1,30 @@
+body{
+    background-color: #ECF0F3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+/* Main area style start from here  */
+#phoneInput{
+    background: #ECF0F3;
+    color: #ff014f;
+    font-size: 34px;
+    border: 0px;
+    border-radius: 10px;
+    padding: 5px 15px;
+    box-shadow: inset 7px 8px 10px #c1c1c1, inset -7px -8px 10px #ffffff;
+}
+#submit{
+    width: 70px;
+    height: 60px;
+    border-radius: 8px;
+    background: #ECF0F3;
+    box-shadow: 8px 8px 10px #c1c1c1, -8px -8px 10px #ffffff;
+    margin-left: 30px;
+}
+#submit i{
+    color: #ff014f;
+    font-size: 30px;
+}
+/* main area style ended */
