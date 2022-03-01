@@ -1,30 +1,87 @@
-body{
-    background-color: #ECF0F3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+body {
+  background-color: #ecf0f3;
 }
-/* Main area style start from here  */
-#phoneInput{
-    background: #ECF0F3;
-    color: #ff014f;
-    font-size: 34px;
-    border: 0px;
-    border-radius: 10px;
-    padding: 5px 15px;
-    box-shadow: inset 7px 8px 10px #c1c1c1, inset -7px -8px 10px #ffffff;
+/* header area style  */
+header {
+  margin: 0vh 0;
 }
-#submit{
-    width: 70px;
-    height: 60px;
-    border-radius: 8px;
-    background: #ECF0F3;
-    box-shadow: 8px 8px 10px #c1c1c1, -8px -8px 10px #ffffff;
-    margin-left: 30px;
+header h1 {
+  font-size: 80px;
+  color: #ecf0f3;
+  text-shadow: -2px -5px 4px #c1c1c1, 5px 4px 4px #ffffff;
 }
-#submit i{
-    color: #ff014f;
-    font-size: 30px;
+/* search area style start from here  */
+#phoneInput {
+  background: #ecf0f3;
+  color: #ff014f;
+  padding: 10px 0px;
+  font-size: 24px;
+  border: 0px;
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: inset 7px 8px 10px #c1c1c1, inset -7px -8px 10px #ffffff;
 }
-/* main area style ended */
+*::-webkit-input-placeholder {
+  color: #c1c1c195;
+}
+input:focus{
+  outline: 0px solid red;
+}input {
+  text-align: center;
+  }
+#submit {
+  height: 60px;
+  border-radius: 10px;
+  background: #ecf0f3;
+  box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
+}
+#submit i {
+  color: #ff014f;
+  text-shadow: -2px -2px 5px #c1c1c1, -4px 4px 4px #ffffff;
+  font-size: 25px;
+}
+/* search area style ended */
+/* flip card design start from here  */
+.card-container {
+  width: 100%;
+  height: 250px;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+.card {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  transition: 0.6s ease-in-out;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  /* perspective: 3000px; */
+}
+.card h1 {
+  transform: translateZ(100px);
+  text-shadow: crimson;
+  /* background-color: aqua; */
+  text-align: center;
+  border-radius: 5px;
+  width: 80%;
+}
+.front {
+  background-color: #ecf0f3;
+}
+.back {
+  background-color: greenyellow;
+  transform: rotateY(180deg);
+}
+.card-container:hover .front {
+  transform: rotateY(180deg);
+}
+.card-container:hover .back {
+  transform: rotateY(360deg);
+}
+/* flip card style end here  */
