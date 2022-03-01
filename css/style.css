@@ -137,6 +137,10 @@ input {
 span {
   color: #ff014f;
 }
+#details strong{
+  font-size: 13px;
+  font-weight: 400;
+}
 .main-info {
   box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
   border-radius: 10px;

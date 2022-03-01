@@ -14,6 +14,7 @@ btnSubmit.addEventListener("click", (e) => {
   } else {
     showError("Input Feild Can't be empty");
   }
+  searchBox.value='';
 });
 //Display Error
 const showError = (errorText) => {};
@@ -58,7 +59,7 @@ const showDetails = phoneID =>{
     fetch(`https://openapi.programming-hero.com/api/phone/${phoneID}`)
     .then(res => res.json())
     .then(data =>{
-        console.log(data.data);
+        // console.log(data.data);
         //scrole to details id
         document.getElementById("details").scrollIntoView(); 
         //create element
@@ -76,40 +77,40 @@ const showDetails = phoneID =>{
             <span>Released</span>
             <strong>${data.data.releaseDate !=''? data.data.releaseDate.slice(9) : 'Not Found!'}</strong>
           </li>
+          <li>
+            <i class="bi bi-phone"></i>
+            <span>Display Size</span>
+            <strong>${data.data.mainFeatures?.displaySize ? data.data.mainFeatures.displaySize: 'Not Available'}</strong>
+          </li>
         </ul>
       </div>
       <div class="col-md-3">
         <ul>
           <li>
-            <i class="bi bi-phone"></i>
-            <span>Display Size</span>
-            <strong>2021, December</strong>
-          </li>
-          <li>
             <i class="bi bi-cpu"></i>
             <span>Chip Set</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.mainFeatures?.chipSet ? data.data.mainFeatures.chipSet: 'Not Available'}</strong>
           </li>
           <li>
             <i class="bi bi-sd-card"></i>
             <span>Memory</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.mainFeatures?.memory ? data.data.mainFeatures.memory: 'Not Available'}</strong>
           </li>
           <li>
             <i class="bi bi-eye"></i>
             <span>Sensors</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.mainFeatures?.sensors.join(', ')}</strong>
           </li>
           <li>
             <i class="bi bi-wifi"></i>
             <span>WiFi</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.others?.WLAN ? data.data.others.WLAN: 'Not Available'}</strong>
           </li>
         </ul>
       </div>
       <div class="col-md-3">
         <img
-          src="https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13-pro-max.jpg"
+          src="${data.data.image}"
           alt=""
         />
       </div>
@@ -118,27 +119,27 @@ const showDetails = phoneID =>{
           <li>
             <i class="bi bi-bluetooth"></i>
             <span>Bluetooth</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.others?.Bluetooth ? data.data.others.Bluetooth: 'Not Available'}</strong>
           </li>
           <li>
             <i class="bi bi-geo-alt"></i>
             <span>GPS</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.others?.GPS ? data.data.others.GPS: 'Not Available' }</strong>
           </li>
           <li>
             <i>N</i>
             <span>NFC</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.others?.NFC ? data.data.others.NFC: 'Not Available' }</strong>
           </li>
           <li>
             <i class="bi bi-broadcast"></i>
             <span>Radio</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.others?.Radio ? data.data.others.Radio: 'Not Available' }</strong>
           </li>
           <li>
             <i class="bi bi-usb-symbol"></i>
             <span>USB</span>
-            <strong>2021, December</strong>
+            <strong>${data.data.others?.USB ? data.data.others.USB: 'Not Available' }</strong>
           </li>
         </ul>
       </div>
