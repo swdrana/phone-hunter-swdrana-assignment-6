@@ -1,6 +1,7 @@
 body {
   background-color: #ecf0f3;
 }
+
 /* header area style  */
 header {
   margin: 5vh 0;
@@ -10,6 +11,7 @@ header h1 {
   color: #ecf0f3;
   text-shadow: -2px -5px 4px #c1c1c1, 5px 4px 4px #ffffff;
 }
+
 /* search area style start from here  */
 #phoneInput {
   background: #ecf0f3;
@@ -24,11 +26,12 @@ header h1 {
 *::-webkit-input-placeholder {
   color: #c1c1c195;
 }
-input:focus{
+input:focus {
   outline: 0px solid red;
-}input {
+}
+input {
   text-align: center;
-  }
+}
 #submit {
   height: 60px;
   border-radius: 10px;
@@ -77,7 +80,7 @@ input:focus{
   box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
 }
 .back {
-  background-color: rgba(220, 20, 60, 0.925);
+  background-color: #ecf0f3;
   box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
   transform: rotateY(180deg);
 }
@@ -87,4 +90,77 @@ input:focus{
 .card-container:hover .back {
   transform: rotateY(360deg);
 }
+
+/* flip card extra style for dyanamic text */
+.front .row,
+.back .row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card button {
+  border: 2px solid red;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.card button:hover {
+  background-color: #ff014f;
+  color: #fff;
+}
+.dyanamic-text-color {
+  color: #ff014f;
+}
 /* flip card style end here  */
+
+/* details info style start*/
+#details hr {
+  background-color: #ff014f;
+  height: 1px;
+  border: 0;
+  opacity: 1;
+}
+#details ul {
+  list-style: none;
+  padding-left: 0;
+}
+#details i {
+  font-size: 30px;
+}
+#details li {
+  position: relative;
+}
+#details span {
+  position: absolute;
+  top: 0;
+}
+#details i,
+span {
+  color: #ff014f;
+}
+.main-info {
+  box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
+  border-radius: 10px;
+  padding: 5px 10px;
+  position: relative;
+}
+#close-btn {
+  width: 20px;
+  position: absolute;
+  top: 0;
+  left: 95%;
+  cursor: pointer;
+  transition: 0.4s;
+  color: steelblue !important;
+}
+#close-btn:hover {
+  color: #ff014f !important;
+}
+/* details info style ended*/
+
+/* Resposived Design  */
+@media only screen and (max-width: 1000px) {
+  /*Tablets [601px -> 960px]*/
+  .card-container {
+    height: 400px;
+  }
+}
