@@ -134,7 +134,7 @@ input {
   top: 0;
 }
 #details i,
-span {
+span,h2,h4 {
   color: #ff014f;
 }
 #details strong{

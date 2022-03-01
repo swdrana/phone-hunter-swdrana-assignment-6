@@ -1,27 +1,52 @@
 const searchBox = document.querySelector("#phoneInput");
 const btnSubmit = document.querySelector("#submit");
 const allPhone = document.querySelector(".all-phone");
-let btnClose = document.querySelector("#close-btn");const phoneDetails = document.getElementById('details');
+const phoneDetails = document.getElementById("details");
 //Search Button Click Action
 btnSubmit.addEventListener("click", (e) => {
+  loading();
   const searchText = searchBox.value.toLowerCase();
-  if (searchBox != "") {
+  if (searchText !== "") {
     fetch(
       `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     )
       .then((res) => res.json())
       .then((data) => showPhones(data.data));
+    showError();
   } else {
-    showError("Input Feild Can't be empty");
+    showError("Input Feild Can't be empty!");
+    // console.log('empty');
   }
-  searchBox.value='';
+  searchBox.value = "";
 });
+//Loding
+const loading = () => {
+  showError();
+  const img = document.createElement("img");
+  img.setAttribute("src", "../img/search.svg");
+  img.setAttribute(
+    "style",
+    "margin: 0 auto; text-align: center; margin: 0 50%; transform: translate(-50%, -20%);"
+  );
+  phoneDetails.appendChild(img);
+};
 //Display Error
-const showError = (errorText) => {};
+const showError = (errorText = "") => {
+  const h2 = document.createElement("h2");
+  h2.style.textAlign = "center";
+  h2.innerText = errorText;
+  phoneDetails.innerHTML = "";
+  phoneDetails.appendChild(h2);
+};
 //Display Phone
 const showPhones = (phonesInfo) => {
   allPhone.innerHTML = "";
-  const only20phonesInfo = phonesInfo.slice(0,20);
+  
+  if (!(phonesInfo && phonesInfo.length)) {
+    //when array is empty
+    showError("No Result Found!");
+  }
+  const only20phonesInfo = phonesInfo.slice(0, 20);
   for (singlePhoneInfo of only20phonesInfo) {
     // console.log(singlePhoneInfo);
     const div = document.createElement("div");
@@ -51,21 +76,28 @@ const showPhones = (phonesInfo) => {
           </div>
         </div>
         `;
-    div.classList.add('col-md-4','col-12','my-2');
+    div.classList.add("col-md-4", "col-12", "my-2");
     allPhone.appendChild(div);
   }
 };
-const showDetails = phoneID =>{
-    fetch(`https://openapi.programming-hero.com/api/phone/${phoneID}`)
-    .then(res => res.json())
-    .then(data =>{
-        // console.log(data.data);
-        //scrole to details id
-        document.getElementById("details").scrollIntoView(); 
-        //create element
-        const div = document.createElement('div');
-        div.classList.add('row','d-flex','align-items-center','justify-content-center','main-info');
-        div.innerHTML=`
+const showDetails = (phoneID) => {
+  loading();
+  fetch(`https://openapi.programming-hero.com/api/phone/${phoneID}`)
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data.data);
+      //scrole to top
+      document.body.scrollIntoView();
+      //create element
+      const div = document.createElement("div");
+      div.classList.add(
+        "row",
+        "d-flex",
+        "align-items-center",
+        "justify-content-center",
+        "main-info"
+      );
+      div.innerHTML = `
       <div class="col-md-3">
         <h2>${data.data.name}</h2>
         <hr />
@@ -75,12 +107,20 @@ const showDetails = phoneID =>{
           <li>
             <i class="bi bi-calendar3"></i>
             <span>Released</span>
-            <strong>${data.data.releaseDate !=''? data.data.releaseDate.slice(9) : 'Not Found!'}</strong>
+            <strong>${
+              data.data.releaseDate != ""
+                ? data.data.releaseDate.slice(9)
+                : "Not Found!"
+            }</strong>
           </li>
           <li>
             <i class="bi bi-phone"></i>
             <span>Display Size</span>
-            <strong>${data.data.mainFeatures?.displaySize ? data.data.mainFeatures.displaySize: 'Not Available'}</strong>
+            <strong>${
+              data.data.mainFeatures?.displaySize
+                ? data.data.mainFeatures.displaySize
+                : "Not Available"
+            }</strong>
           </li>
         </ul>
       </div>
@@ -89,22 +129,32 @@ const showDetails = phoneID =>{
           <li>
             <i class="bi bi-cpu"></i>
             <span>Chip Set</span>
-            <strong>${data.data.mainFeatures?.chipSet ? data.data.mainFeatures.chipSet: 'Not Available'}</strong>
+            <strong>${
+              data.data.mainFeatures?.chipSet
+                ? data.data.mainFeatures.chipSet
+                : "Not Available"
+            }</strong>
           </li>
           <li>
             <i class="bi bi-sd-card"></i>
             <span>Memory</span>
-            <strong>${data.data.mainFeatures?.memory ? data.data.mainFeatures.memory: 'Not Available'}</strong>
+            <strong>${
+              data.data.mainFeatures?.memory
+                ? data.data.mainFeatures.memory
+                : "Not Available"
+            }</strong>
           </li>
           <li>
             <i class="bi bi-eye"></i>
             <span>Sensors</span>
-            <strong>${data.data.mainFeatures?.sensors.join(', ')}</strong>
+            <strong>${data.data.mainFeatures?.sensors.join(", ")}</strong>
           </li>
           <li>
             <i class="bi bi-wifi"></i>
             <span>WiFi</span>
-            <strong>${data.data.others?.WLAN ? data.data.others.WLAN: 'Not Available'}</strong>
+            <strong>${
+              data.data.others?.WLAN ? data.data.others.WLAN : "Not Available"
+            }</strong>
           </li>
         </ul>
       </div>
@@ -119,38 +169,53 @@ const showDetails = phoneID =>{
           <li>
             <i class="bi bi-bluetooth"></i>
             <span>Bluetooth</span>
-            <strong>${data.data.others?.Bluetooth ? data.data.others.Bluetooth: 'Not Available'}</strong>
+            <strong>${
+              data.data.others?.Bluetooth
+                ? data.data.others.Bluetooth
+                : "Not Available"
+            }</strong>
           </li>
           <li>
             <i class="bi bi-geo-alt"></i>
             <span>GPS</span>
-            <strong>${data.data.others?.GPS ? data.data.others.GPS: 'Not Available' }</strong>
+            <strong>${
+              data.data.others?.GPS ? data.data.others.GPS : "Not Available"
+            }</strong>
           </li>
           <li>
             <i>N</i>
             <span>NFC</span>
-            <strong>${data.data.others?.NFC ? data.data.others.NFC: 'Not Available' }</strong>
+            <strong>${
+              data.data.others?.NFC ? data.data.others.NFC : "Not Available"
+            }</strong>
           </li>
           <li>
             <i class="bi bi-broadcast"></i>
             <span>Radio</span>
-            <strong>${data.data.others?.Radio ? data.data.others.Radio: 'Not Available' }</strong>
+            <strong>${
+              data.data.others?.Radio ? data.data.others.Radio : "Not Available"
+            }</strong>
           </li>
           <li>
             <i class="bi bi-usb-symbol"></i>
             <span>USB</span>
-            <strong>${data.data.others?.USB ? data.data.others.USB: 'Not Available' }</strong>
+            <strong>${
+              data.data.others?.USB ? data.data.others.USB : "Not Available"
+            }</strong>
           </li>
         </ul>
       </div>
-      <i class="bi bi-x-square" id="close-btn"></i>
+      <i class="bi bi-x-square" id="close-btn" onClick="closeBtn()"></i>
             `;
-        phoneDetails.innerHTML='';
-        phoneDetails.appendChild(div);
-        btnClose=document.querySelector("#close-btn");
+      phoneDetails.innerHTML = "";
+      document.getElementById("details").style.display = "block";
+      phoneDetails.appendChild(div);
+      btnClose = document.querySelector("#close-btn");
     });
-}
-// btnClose.addEventListener('click',e=>{
-//     console.log(1);
-//     document.getElementById('details').style.display='none';
-// })
+  // showError();
+};
+//Close Button
+const closeBtn = (e) => {
+  //   console.log(1);
+  document.getElementById("details").style.display = "none";
+};
