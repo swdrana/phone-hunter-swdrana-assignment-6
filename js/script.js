@@ -41,45 +41,70 @@ const showError = (errorText = "") => {
 //Display Phone
 const showPhones = (phonesInfo) => {
   allPhone.innerHTML = "";
-  
+
   if (!(phonesInfo && phonesInfo.length)) {
     //when array is empty
     showError("No Result Found!");
   }
-  const only20phonesInfo = phonesInfo.slice(0, 20);
-  for (singlePhoneInfo of only20phonesInfo) {
-    // console.log(singlePhoneInfo);
-    const div = document.createElement("div");
-    div.innerHTML = `
-        <div class="card-container">
-          <div class="card front">
-            <div class="row">
-            <div class="col-md-5">
-              <img class="img-fluid" src="${singlePhoneInfo.image}" alt="">
-            </div>
-            <div class="col-md-7">
-              <h3><span class="dyanamic-text-color">${singlePhoneInfo.phone_name}</span></h3>
-              <h5><b>Brand:</b> <span class="dyanamic-text-color">${singlePhoneInfo.brand}</span></h5>
-              <p><i>See More <i class="bi bi-arrow-left-right"></i></i></p>
-            </div>
-            </div>
-          </div>
-          <div class="card back">
-            <div class="row">
-                <div class="col-md-5">
-                    <img class="img-fluid" src="${singlePhoneInfo.image}" alt="">
-                </div>
-                <div class="col-md-7">
-                    <button id="btn-details" onClick="showDetails('${singlePhoneInfo.slug}');">Show Details</button>
-                </div>
-            </div>
-          </div>
+  //show only 20 items
+  show20orMore(phonesInfo.slice(0, 20));
+  let arr = [81,2,3];
+  console.log(arr);
+  //show more then 20 items
+  if(phonesInfo.length>20){
+  const div = document.createElement("div");
+  div.classList.add("col-md-4", "col-12", "my-2");
+  div.setAttribute('id','test');
+  div.innerHTML = `
+    <div class="d-flex align-items-center justify-content-center card-container  show-more">
+        <div class="">   
+            <i class="bi bi-arrow-right-square"></i>
         </div>
-        `;
-    div.classList.add("col-md-4", "col-12", "my-2");
-    allPhone.appendChild(div);
+    </div>
+  `;
+  allPhone.appendChild(div);
+  document.getElementById('test').addEventListener('click',e=>{
+    show20orMore(phonesInfo);
+  })
   }
 };
+//showing phone info into ui
+const show20orMore=(arr)=>{
+    // console.log(arr);
+    allPhone.innerHTML='';
+    for (singlePhoneInfo of arr) {
+        // console.log(singlePhoneInfo);
+        const div = document.createElement("div");
+        div.innerHTML = `
+            <div class="card-container">
+              <div class="card front">
+                <div class="row">
+                <div class="col-md-5">
+                  <img class="img-fluid" src="${singlePhoneInfo.image}" alt="">
+                </div>
+                <div class="col-md-7">
+                  <h3><span class="dyanamic-text-color">${singlePhoneInfo.phone_name}</span></h3>
+                  <h5><b>Brand:</b> <span class="dyanamic-text-color">${singlePhoneInfo.brand}</span></h5>
+                  <p><i>See More <i class="bi bi-arrow-left-right"></i></i></p>
+                </div>
+                </div>
+              </div>
+              <div class="card back">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="img-fluid" src="${singlePhoneInfo.image}" alt="">
+                    </div>
+                    <div class="col-md-7">
+                        <button id="btn-details" onClick="showDetails('${singlePhoneInfo.slug}');">Show Details</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+            `;
+        div.classList.add("col-md-4", "col-12", "my-2");
+        allPhone.appendChild(div);
+      }
+}
 const showDetails = (phoneID) => {
   loading();
   fetch(`https://openapi.programming-hero.com/api/phone/${phoneID}`)

@@ -134,10 +134,12 @@ input {
   top: 0;
 }
 #details i,
-span,h2,h4 {
+span,
+h2,
+h4 {
   color: #ff014f;
 }
-#details strong{
+#details strong {
   font-size: 13px;
   font-weight: 400;
 }
@@ -160,7 +162,24 @@ span,h2,h4 {
   color: #ff014f !important;
 }
 /* details info style ended*/
-
+/* see more btn  */
+.show-more {
+  box-shadow: 6px 5px 10px #c1c1c1, -6px -5px 10px #ffffff;
+  border: 1px solid #c1c1c1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.show-more i {
+  font-size: 60px;
+  color: #ff014f;
+  text-shadow: -3px -4px 4px #c1c1c1, 6px 3px 4px #ffffff;
+}
+.show-more > div {
+  transition: 0.3s;
+}
+.show-more:hover > div {
+  transform: rotate(90deg);
+}
 /* Resposived Design  */
 @media only screen and (max-width: 1000px) {
   /*Tablets [601px -> 960px]*/
