@@ -22,7 +22,8 @@ nav a {
 }
 /* header area style  */
 header {
-  margin: 20vh 0;
+  margin-top: 10vh;
+  margin-bottom: 20vh;
 }
 header h1 {
   font-size: 80px;
