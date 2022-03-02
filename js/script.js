@@ -48,34 +48,34 @@ const showPhones = (phonesInfo) => {
   }
   //show only 20 items
   show20orMore(phonesInfo.slice(0, 20));
-  let arr = [81,2,3];
+  let arr = [81, 2, 3];
   console.log(arr);
   //show more then 20 items
-  if(phonesInfo.length>20){
-  const div = document.createElement("div");
-  div.classList.add("col-md-4", "col-12", "my-2");
-  div.setAttribute('id','test');
-  div.innerHTML = `
+  if (phonesInfo.length > 20) {
+    const div = document.createElement("div");
+    div.classList.add("col-md-4", "col-12", "my-2");
+    div.setAttribute("id", "test");
+    div.innerHTML = `
     <div class="d-flex align-items-center justify-content-center card-container  show-more">
         <div class="">   
             <i class="bi bi-arrow-right-square"></i>
         </div>
     </div>
   `;
-  allPhone.appendChild(div);
-  document.getElementById('test').addEventListener('click',e=>{
-    show20orMore(phonesInfo);
-  })
+    allPhone.appendChild(div);
+    document.getElementById("test").addEventListener("click", (e) => {
+      show20orMore(phonesInfo);
+    });
   }
 };
 //showing phone info into ui
-const show20orMore=(arr)=>{
-    // console.log(arr);
-    allPhone.innerHTML='';
-    for (singlePhoneInfo of arr) {
-        // console.log(singlePhoneInfo);
-        const div = document.createElement("div");
-        div.innerHTML = `
+const show20orMore = (arr) => {
+  // console.log(arr);
+  allPhone.innerHTML = "";
+  for (singlePhoneInfo of arr) {
+    // console.log(singlePhoneInfo);
+    const div = document.createElement("div");
+    div.innerHTML = `
             <div class="card-container">
               <div class="card front">
                 <div class="row">
@@ -101,10 +101,10 @@ const show20orMore=(arr)=>{
               </div>
             </div>
             `;
-        div.classList.add("col-md-4", "col-12", "my-2");
-        allPhone.appendChild(div);
-      }
-}
+    div.classList.add("col-md-4", "col-12", "my-2");
+    allPhone.appendChild(div);
+  }
+};
 const showDetails = (phoneID) => {
   loading();
   fetch(`https://openapi.programming-hero.com/api/phone/${phoneID}`)

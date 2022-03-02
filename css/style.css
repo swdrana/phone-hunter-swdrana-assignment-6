@@ -1,7 +1,25 @@
 body {
   background-color: #ecf0f3;
 }
-
+/* nav item style  */
+nav li {
+  display: inline-block;
+}
+nav a {
+  color: #ecf0f3;
+  text-shadow: -2px -5px 4px #c1c1c1, 4px 4px 4px #ffffff;
+  font-size: 30px;
+  transition: 0.5s;
+}
+.bi-youtube:hover {
+  color: red;
+}
+.bi-github:hover {
+  color: #25292e;
+}
+.bi-whatsapp:hover {
+  color: #63d843;
+}
 /* header area style  */
 header {
   margin: 20vh 0;
