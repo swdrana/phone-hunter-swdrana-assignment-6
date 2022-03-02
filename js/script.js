@@ -112,7 +112,7 @@ const showDetails = (phoneID) => {
     .then((data) => {
       // console.log(data.data);
       //scrole to top
-      document.body.scrollIntoView();
+      document.getElementById("details").scrollIntoView();
       //create element
       const div = document.createElement("div");
       div.classList.add(
